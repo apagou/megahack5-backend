@@ -1,15 +1,16 @@
 import Shop from '../models/Shop';
+import Products from '../models/Product';
 
 class ShopController {
   async create(req, res) {
     const newShop = await Shop.create(req.body);
 
     const {
-      id, shop, whereIsLocated, open, close,
+      id, shop, where_is_located, open, close,
     } = newShop;
 
     return res.json({
-      id, shop, whereIsLocated, open, close,
+      id, shop, where_is_located, open, close,
     });
   }
 
@@ -27,7 +28,19 @@ class ShopController {
 
   // Show - to do -> Show all products from a specific store
   async show(req, res) {
-    // todo
+    const { id } = req.params;
+
+    try {
+      const shop = await Shop.findOne({ where: { id } });
+      const products = await Products.findAll({ where: { shopId: id } });
+      return res.json({
+        shop,
+        products,
+      });
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
   }
 }
 

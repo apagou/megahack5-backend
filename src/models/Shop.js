@@ -1,4 +1,5 @@
 import Sequelize, { Model } from 'sequelize';
+import Product from './Product';
 
 export default class Shop extends Model {
   static init(sequelize) {
@@ -14,7 +15,7 @@ export default class Shop extends Model {
             },
           },
         },
-        whereIsLocated: {
+        where_is_located: {
           type: Sequelize.STRING,
           defaultValue: '',
         },

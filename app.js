@@ -1,11 +1,12 @@
-import { resolve } from "path";
+import { resolve } from 'path';
 
-import "./src/database";
-import express from "express";
+import './src/database';
+import express from 'express';
 
-import userRoutes from "./src/routes/userRoutes";
-import tokenRoutes from "./src/routes/tokenRoutes";
-import shopRoutes from "./src/routes/shopRoutes";
+import userRoutes from './src/routes/userRoutes';
+import tokenRoutes from './src/routes/tokenRoutes';
+import shopRoutes from './src/routes/shopRoutes';
+import productRoutes from './src/routes/productRoutes';
 
 class App {
   constructor() {
@@ -21,14 +22,15 @@ class App {
   middlewares() {
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());
-    this.app.use(express.static(resolve(__dirname, "uploads")));
+    this.app.use(express.static(resolve(__dirname, 'uploads')));
   }
 
   // Routes that will help you handle HTTP requests.
   routes() {
-    this.app.use("/users/", userRoutes);
-    this.app.use("/tokens/", tokenRoutes);
-    this.app.use("/shop/", shopRoutes);
+    this.app.use('/users/', userRoutes);
+    this.app.use('/tokens/', tokenRoutes);
+    this.app.use('/shop/', shopRoutes);
+    this.app.use('/products/', productRoutes);
   }
 }
 
