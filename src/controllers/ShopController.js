@@ -17,11 +17,12 @@ class ShopController {
   // Index - Show All
   async index(req, res) {
     try {
-      const shops = await Shop.findAll();
+      const shops = await Shop.findAll()
       return res.json({
         shops,
       });
     } catch (error) {
+      console.log(error)
       return res.json(null);
     }
   }
@@ -35,7 +36,7 @@ class ShopController {
         attributes: ['shop', 'where_is_located','open','close'],
         include:{
           model: Products,
-          attributes: ['productName', 'Price', 'Rating', 'P','M','G','GG']
+          attributes: ['productName', 'Price', 'Rating', 'P','M','G','GG', 'url']
         }
       })
       return res.json({

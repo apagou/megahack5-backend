@@ -27,6 +27,7 @@ class App {
 
   // Routes that will help you handle HTTP requests.
   routes() {
+    this.app.use('/images', express.static('uploads'))
     this.app.use('/users/', userRoutes);
     this.app.use('/tokens/', tokenRoutes);
     this.app.use('/shop/', shopRoutes);

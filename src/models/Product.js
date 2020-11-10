@@ -1,10 +1,15 @@
 import Sequelize, { Model } from 'sequelize';
+import appConfig from '../config/appConfig'
 
 export default class Product extends Model {
     static init(sequelize) {
         super.init(
             {
                 productName: {
+                    type: Sequelize.STRING,
+                    defaultValue: '',
+                },
+                url:{
                     type: Sequelize.STRING,
                     defaultValue: '',
                 },
@@ -40,7 +45,5 @@ export default class Product extends Model {
         return this;
     }
 
-    static associate(models){
-        this.hasOne(models.Shop, {foreignKey: 'shopId'})
-    }
+
 }
