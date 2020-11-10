@@ -10,6 +10,6 @@ const upload = multer(multerConfig)
 const router = new Router();
 
 router.post('/', ProductController.store);
-router.get('/', ProductController.store);
+router.get('/:id', ProductController.findOneByShop);
 
 export default router;
