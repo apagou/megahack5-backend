@@ -31,11 +31,15 @@ class ShopController {
     const { id } = req.params;
 
     try {
-      const shop = await Shop.findOne({ where: { id } });
-      const products = await Products.findAll({ where: { shopId: id } });
+      const shop = await Shop.findByPk(id, {
+        attributes: ['shop', 'where_is_located','open','close'],
+        include:{
+          model: Products,
+          attributes: ['productName', 'Price', 'Rating', 'P','M','G','GG']
+        }
+      })
       return res.json({
         shop,
-        products,
       });
     } catch (error) {
       console.log(error);

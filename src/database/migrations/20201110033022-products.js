@@ -35,11 +35,6 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         allowNull: false,
       },
-      shopId: {
-        type: Sequelize.BOOLEAN,
-        allowNull: false,
-        // references: { model: 'shops', key: 'id' },
-      },
       created_at: {
         type: Sequelize.DATE,
         allowNull: false,
@@ -48,7 +43,16 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: false,
       },
-
+      shop_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'shops',
+          key: 'id',
+        },
+        onDelete: 'SET NULL',
+        onUpdate: 'CASCADE',
+      },
     });
   },
 

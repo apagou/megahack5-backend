@@ -1,5 +1,4 @@
 import Sequelize, { Model } from 'sequelize';
-import Shop from './Shop';
 
 export default class Product extends Model {
     static init(sequelize) {
@@ -33,18 +32,15 @@ export default class Product extends Model {
                     type: Sequelize.BOOLEAN,
                     defaultValue: false,
                 },
-                shopId: {
-                    type: Sequelize.STRING,
-                    defaultValue: '',
-                },
             },
             {
                 sequelize,
             },
         );
-
-        //   Product.belongsTo(Shop, { foreignKey: 'shopId', targetKey: 'id' });
-
         return this;
+    }
+
+    static associate(models){
+        this.hasOne(models.Shop, {foreignKey: 'shopId'})
     }
 }
