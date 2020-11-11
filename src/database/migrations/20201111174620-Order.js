@@ -18,7 +18,6 @@ module.exports = {
       order_status: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: true,
       },
       amount: {
         type: Sequelize.INTEGER,

@@ -9,6 +9,6 @@ import Product from '../models/Product';
 const router = new Router();
 
 router.post('/', ProductController.store);
-// router.get('/:id', ProductController.findOneByShop);
+router.get('/:id', ProductController.findOneByShop);
 
 export default router;
