@@ -49,7 +49,10 @@ export default class Shop extends Model {
 
   static associate(models){
     this.hasMany(models.Product, {foreignKey: 'shop_id'})
+    this.hasMany(models.Order, {foreignKey: 'requested_shop'})
 }
+
+
 
 
 }

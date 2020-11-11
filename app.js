@@ -7,6 +7,7 @@ import userRoutes from './src/routes/userRoutes';
 import tokenRoutes from './src/routes/tokenRoutes';
 import shopRoutes from './src/routes/shopRoutes';
 import productRoutes from './src/routes/productRoutes';
+import orderRoutes from './src/routes/orderRoutes'
 
 class App {
   constructor() {
@@ -32,6 +33,7 @@ class App {
     this.app.use('/tokens/', tokenRoutes);
     this.app.use('/shop/', shopRoutes);
     this.app.use('/products/', productRoutes);
+    this.app.use('/order/', orderRoutes);
   }
 }
 
