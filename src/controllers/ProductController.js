@@ -8,7 +8,7 @@ import multerConfig from '../config/multer'
 const upload = multer(multerConfig).single('product_photo')
 
 class ProductController {
-    store(req, res) {
+    store (req, res) {
         return upload(req, res, async (error) => {
           if (error) {
             return res.status(400).json({
