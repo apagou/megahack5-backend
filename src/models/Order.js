@@ -1,5 +1,6 @@
 import Sequelize, { Model } from 'sequelize';
 
+
 export default class Order extends Model {
     static init(sequelize) {
         super.init(
@@ -27,6 +28,11 @@ export default class Order extends Model {
         );
         return this;
     }
+
+    static associate(models){
+        this.hasMany(models.OrderedProducts, {foreignKey: 'order_id'})
+    }
+
 
 
 }

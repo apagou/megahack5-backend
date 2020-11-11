@@ -5,11 +5,18 @@ class OrderController {
   async store(req, res) {
     const { requested_shop, order_status, amount, buyer, productList} = req.body
 
-    const newOrder = await Order.create({ requested_shop, order_status, amount, buyer})
+   await Order.create({ requested_shop, order_status, amount, buyer})
+
+  const lastOrder =  await Order.findAll({
+    limit: 1,
+    order: [ [ 'created_at', 'DESC' ]]
+  })
+
+  console.log(lastOrder);
 
   const ordered_products = []
     productList.map((product) => {
-      ordered_products.push({user_id: buyer, product_id: product.product_id, amount: product.amount})
+      ordered_products.push({user_id: buyer, product_id: product.product_id, amount: product.amount, order_id: lastOrder[0].id})
     })
 
    await OrderedProducts.bulkCreate(ordered_products)
@@ -19,12 +26,16 @@ class OrderController {
     });
   }
 
- /* // Index - Show All
+  // Find current order by user
   async index(req, res) {
+    const { user } = req.params
     try {
-      const shops = await Shop.findAll()
+      const order = await Order.findOne({where: user,         include:{
+        model: OrderedProducts,
+        attributes: ['product_id']
+      }})
       return res.json({
-        shops,
+        order
       });
     } catch (error) {
       console.log(error)
@@ -33,7 +44,7 @@ class OrderController {
   }
 
   // Show - to do -> Show all products from a specific store
-  async show(req, res) {
+  /*async show(req, res) {
     const { id } = req.params;
 
     try {

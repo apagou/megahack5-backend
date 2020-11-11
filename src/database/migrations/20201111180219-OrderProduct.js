@@ -24,6 +24,15 @@ module.exports = {
           key: 'id',
         },
       },
+      order_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        unique: true,
+        references: {
+          model: 'orders',
+          key: 'id',
+        },
+      },
       amount: {
         type: Sequelize.INTEGER,
         allowNull: false,

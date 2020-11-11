@@ -7,6 +7,6 @@ import loginRequired from '../middlewares/loginRequired';
 const router = new Router();
 
 router.post('/', OrderController.store);
-// router.get('/:id', ProductController.findOneByShop);
+router.get('/', OrderController.index);
 
 export default router;
