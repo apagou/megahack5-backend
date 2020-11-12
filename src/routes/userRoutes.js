@@ -11,4 +11,7 @@ router.get('/:id', UserController.show);
 router.put('/update', loginRequired, UserController.update);
 router.delete('/delete', loginRequired, UserController.delete);
 
+router.post('/create/address', UserController.createAddress);
+router.get('/address/:id', UserController.getAddress);
+
 export default router;

@@ -41,6 +41,7 @@ export default class User extends Model {
       sequelize,
     });
 
+
     // Before saving we hash the user's password and after this we're able to throw into the server
     this.addHook('beforeSave', async (user) => {
       if (user.password) { user.password_hash = await bcryptjs.hash(user.password, 8); }
@@ -50,5 +51,9 @@ export default class User extends Model {
 
   passwordIsValid(password) {
     return bcryptjs.compare(password, this.password_hash);
+  }
+
+  static associate(models) {
+    this.hasOne(models.UserAddress, { foreignKey: 'user_id' });
   }
 }

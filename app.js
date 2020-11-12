@@ -7,7 +7,7 @@ import userRoutes from './src/routes/userRoutes';
 import tokenRoutes from './src/routes/tokenRoutes';
 import shopRoutes from './src/routes/shopRoutes';
 import productRoutes from './src/routes/productRoutes';
-import orderRoutes from './src/routes/orderRoutes'
+import orderRoutes from './src/routes/orderRoutes';
 
 class App {
   constructor() {
@@ -28,7 +28,7 @@ class App {
 
   // Routes that will help you handle HTTP requests.
   routes() {
-    this.app.use('/images', express.static('uploads'))
+    this.app.use('/images', express.static('uploads'));
     this.app.use('/users/', userRoutes);
     this.app.use('/tokens/', tokenRoutes);
     this.app.use('/shop/', shopRoutes);

@@ -1,3 +1,4 @@
+import UserAddress from '../models/UserAddress';
 import User from '../models/Users';
 
 class UserController {
@@ -73,6 +74,35 @@ class UserController {
       return res.json(user);
     } catch (error) {
       return res.status(400).json({ errors: error.errors.map((err) => err.message) });
+    }
+  }
+
+  async createAddress(req, res) {
+    try {
+      const userAddress = await UserAddress.create(req.body);
+
+      if (!userAddress) {
+        return res.status(400).json({
+          errors: ['Address cannot be added'],
+        });
+      }
+
+      return res.json(userAddress);
+    } catch (error) {
+      console.log(error);
+      return res.status(400).json({ errors: error.errors.map((err) => err.message) });
+    }
+  }
+
+  async getAddress(req, res) {
+    const { id } = req.params;
+
+    try {
+      const userAddress = await UserAddress.findOne({ where: { user_id: id } });
+
+      res.json(userAddress);
+    } catch (e) {
+      console.log(e);
     }
   }
 }

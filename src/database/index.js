@@ -6,11 +6,11 @@ import Shop from '../models/Shop';
 import Product from '../models/Product';
 import Order from '../models/Order';
 import OrderedProducts from '../models/OrderedProducts';
+import UserAddress from '../models/UserAddress';
 
-const models = [User, Shop, Product, Order, OrderedProducts];
+const models = [User, Shop, Product, Order, OrderedProducts, UserAddress];
 
 const connection = new Sequelize(databaseConfig);
-
 
 models.forEach((model) => model.init(connection));
 
