@@ -1,32 +1,37 @@
 import Order from '../models/Order';
-import OrderedProducts from '../models/OrderedProducts'
+import OrderedProducts from '../models/OrderedProducts';
 import Product from '../models/Product';
 import UserAddress from '../models/UserAddress';
 
 class OrderController {
   async store(req, res) {
+    // Product list must be like -> [{"product_id": 1, "amount": 1}, {...}]
+    const {
+      requested_shop, order_status, amount, buyer, productList,
+    } = req.body;
 
-    // Product list must be like -> [{"product_id": 1, "amount": 1}, {...}] 
-    const { requested_shop, order_status, amount, buyer, productList } = req.body
-
-    await Order.create({ requested_shop, order_status, amount, buyer })
+    await Order.create({
+      requested_shop, order_status, amount, buyer,
+    });
 
     const lastOrder = await Order.findAll({
       limit: 1,
-      order: [['created_at', 'DESC']]
-    })
+      order: [['created_at', 'DESC']],
+    });
 
-    const ordered_products = []
+    const ordered_products = [];
 
     // Convert the product list received to an array that can be sent to the database
     productList.map((product) => {
-      ordered_products.push({ user_id: buyer, product_id: product.product_id, amount: product.amount, order_id: lastOrder[0].id })
-    })
+      ordered_products.push({
+        user_id: buyer, product_id: product.product_id, amount: product.amount, order_id: lastOrder[0].id,
+      });
+    });
 
-    await OrderedProducts.bulkCreate(ordered_products)
+    await OrderedProducts.bulkCreate(ordered_products);
 
     return res.json({
-      requested_shop, order_status, amount, buyer, productList
+      requested_shop, order_status, amount, buyer, productList,
     });
   }
 
@@ -36,34 +41,42 @@ class OrderController {
 
     try {
       const order = await Order.findAll({
-        where: { buyer: user }, include: {
+        where: { buyer: user },
+        include: {
           model: OrderedProducts,
-          attributes: ['product_id']
-        }
-      })
+          attributes: ['product_id'],
+        },
+      });
 
-      //const products = []
+      // const products = []
       // This loops goes to Products table then translate id -> product_name - gambiarra, amanha resolvo (Foreign Key)
-      /*for (let i = 0; i <= order.length; i++) {
+      /* for (let i = 0; i <= order.length; i++) {
         let productWithoutStrings = await Product.findOne({ where: { id: order[0].dataValues.OrderedProducts.dataValues[i].product_id } });
         products.push(productWithoutStrings)
-      }*/
+      } */
 
-      const address = await UserAddress.findOne({ where: { user_id: user } })
+      const address = await UserAddress.findOne({ where: { user_id: user } });
 
-      const lastOrder = order[order.length - 1]
+      const lastOrder = order[order.length - 1];
+
+      const products = [];
+
+      lastOrder.OrderedProducts.map((product) => products.push(product.dataValues.product_id));
+
+      const productAttributes = await Product.findAll({ where: { id: products }, attributes: ['productName', 'url'] });
+
+      console.log(productWithoutStrings);
 
       return res.json({
         lastOrder,
-        address
+        productAttributes,
+        address,
       });
     } catch (error) {
-      console.log(error)
+      console.log(error);
       return res.json(null);
     }
   }
-
-
 }
 
 export default new OrderController();
