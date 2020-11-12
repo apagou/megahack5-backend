@@ -47,7 +47,6 @@ class OrderController {
       /*for (let i = 0; i <= order.length; i++) {
         let productWithoutStrings = await Product.findOne({ where: { id: order[0].dataValues.OrderedProducts.dataValues[i].product_id } });
         products.push(productWithoutStrings)
-
       }*/
 
       const address = await UserAddress.findOne({ where: { user_id: user } })

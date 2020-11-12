@@ -8,4 +8,6 @@
 - [x] List all shops
 - [x] List one shop with their respectives products
 - [x] Create Token
+- [x] Create Order
+- [x] List users last order (Products, Address, User)
 - [x] Authenticated Routes (Token)
