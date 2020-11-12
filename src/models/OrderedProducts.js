@@ -1,4 +1,4 @@
-import Sequelize, {  Model } from 'sequelize';
+import Sequelize, { Model } from 'sequelize';
 
 export default class OrderedProducts extends Model {
     static init(sequelize) {
@@ -8,11 +8,11 @@ export default class OrderedProducts extends Model {
                     type: Sequelize.INTEGER,
                     defaultValue: '',
                 },
-                product_id:{
+                product_id: {
                     type: Sequelize.INTEGER,
                     defaultValue: '',
                 },
-                order_id:{
+                order_id: {
                     type: Sequelize.INTEGER,
                     defaultValue: '',
                 },
@@ -28,15 +28,9 @@ export default class OrderedProducts extends Model {
         return this;
     }
 
-
-    static associate(models){
-        this.hasOne(models.User, {foreignKey: 'id'})
-        this.hasOne(models.Product, {foreignKey: 'id'})
-        this.hasOne(models.OrderedProducts, {foreignKey: 'id'})
+    static associate(models) {
+        this.hasOne(models.User, { foreignKey: 'id' });
+        this.hasOne(models.Product, { foreignKey: 'id' });
+        this.hasOne(models.OrderedProducts, { foreignKey: 'id' });
     }
-    
-
 }
-
-
-
