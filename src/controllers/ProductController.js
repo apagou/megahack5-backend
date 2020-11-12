@@ -44,9 +44,9 @@ class ProductController {
 
       // const desiredProduct = product[id].dataValues
 
-      return res.json({
-        product,
-      });
+      return res.json(
+        product
+      );
     } catch (error) {
       console.log(error);
       return res.json(null);
