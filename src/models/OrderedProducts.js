@@ -18,6 +18,10 @@ export default class OrderedProducts extends Model {
                 },
                 amount: {
                     type: Sequelize.INTEGER,
+                    defaultValue: 1,
+                },
+                price: {
+                    type: Sequelize.DECIMAL(18,2),
                     defaultValue: '',
                 },
             },
@@ -31,6 +35,6 @@ export default class OrderedProducts extends Model {
     static associate(models) {
         this.hasOne(models.User, { foreignKey: 'id' });
         this.hasOne(models.Product, { foreignKey: 'id' });
-        this.hasOne(models.OrderedProducts, { foreignKey: 'id' });
+        this.hasOne(models.Order, { foreignKey: 'id' });
     }
 }

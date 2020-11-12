@@ -7,36 +7,24 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
       },
-      productName: {
+      name: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      url: {
+      img_url: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      Price: {
+      price: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      Rating: {
+      stars: {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      P: {
-        type: Sequelize.BOOLEAN,
-        allowNull: false,
-      },
-      M: {
-        type: Sequelize.BOOLEAN,
-        allowNull: false,
-      },
-      G: {
-        type: Sequelize.BOOLEAN,
-        allowNull: false,
-      },
-      GG: {
-        type: Sequelize.BOOLEAN,
+      size: {
+        type: Sequelize.STRING,
         allowNull: false,
       },
       created_at: {

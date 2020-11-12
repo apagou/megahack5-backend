@@ -6,7 +6,7 @@ import loginRequired from '../middlewares/loginRequired';
 
 const router = new Router();
 
-router.post('/', OrderController.store);
-router.get('/', OrderController.index);
+router.post('/',loginRequired, OrderController.store);
+router.get('/',loginRequired, OrderController.index);
 
 export default router;

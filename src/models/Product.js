@@ -5,37 +5,29 @@ export default class Product extends Model {
     static init(sequelize) {
         super.init(
             {
-                productName: {
+                name: {
                     type: Sequelize.STRING,
                     defaultValue: '',
                 },
-                url:{
+                img_url:{
                     type: Sequelize.STRING,
                     defaultValue: '',
                 },
-                Price: {
-                    type: Sequelize.STRING,
+                price: {
+                    type: Sequelize.DECIMAL(18,2),
                     defaultValue: '',
                 },
-                Rating: {
+                stars: {
                     type: Sequelize.INTEGER,
                     defaultValue: '',
                 },
-                P: {
-                    type: Sequelize.BOOLEAN,
-                    defaultValue: true,
+                size: {
+                    type: Sequelize.INTEGER,
+                    defaultValue: '',
                 },
-                M: {
-                    type: Sequelize.BOOLEAN,
-                    defaultValue: false,
-                },
-                G: {
-                    type: Sequelize.BOOLEAN,
-                    defaultValue: true,
-                },
-                GG: {
-                    type: Sequelize.BOOLEAN,
-                    defaultValue: false,
+                shop_id: {
+                    type: Sequelize.INTEGER,
+                    defaultValue: '',
                 },
             },
             {

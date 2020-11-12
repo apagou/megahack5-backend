@@ -4,7 +4,7 @@ export default class Shop extends Model {
   static init(sequelize) {
     super.init(
       {
-        shop: {
+        name: {
           type: Sequelize.STRING,
           defaultValue: '',
           validate: {
@@ -13,10 +13,6 @@ export default class Shop extends Model {
               msg: 'Field "shop" must have a value between 4 and 30 chars',
             },
           },
-        },
-        where_is_located: {
-          type: Sequelize.STRING,
-          defaultValue: '',
         },
         open: {
           type: Sequelize.STRING,
@@ -38,7 +34,18 @@ export default class Shop extends Model {
             },
           },
         },
+        lat: {
+          type: Sequelize.DECIMAL(18,8),
+        },
+        long: {
+          type: Sequelize.DECIMAL(18,8),
+        },
+        img_url: {
+          type: Sequelize.STRING,
+          defaultValue: '',
+        },
       },
+      
       {
         sequelize,
       },
@@ -49,7 +56,7 @@ export default class Shop extends Model {
 
   static associate(models){
     this.hasMany(models.Product, {foreignKey: 'shop_id'})
-    this.hasMany(models.Order, {foreignKey: 'requested_shop'})
+    this.hasMany(models.Order, {foreignKey: 'shop_id'})
 }
 
 

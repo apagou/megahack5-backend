@@ -7,23 +7,23 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
       },
-      requested_shop: {
-        type: Sequelize.STRING,
+      shop_id: {
+        type: Sequelize.INTEGER,
         allowNull: false,
         references: {
           model: 'shops',
           key: 'id',
         },
       },
-      order_status: {
+      status: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      amount: {
+      freight: {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      buyer: {
+      user_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {

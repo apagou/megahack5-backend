@@ -7,20 +7,27 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
       },
-      shop: {
+      name: {
         type: Sequelize.STRING,
         allowNull: false,
-      },
-      where_is_located: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        unique: true,
       },
       open: {
         type: Sequelize.STRING,
         allowNull: false,
       },
       close: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      lat: {
+        type: Sequelize.DECIMAL(18,8),
+        allowNull: false,
+      },
+      long: {
+        type: Sequelize.DECIMAL(18,8),
+        allowNull: false,
+      },
+      img_url: {
         type: Sequelize.STRING,
         allowNull: false,
       },

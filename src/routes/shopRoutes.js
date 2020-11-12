@@ -4,9 +4,9 @@ import loginRequired from '../middlewares/loginRequired';
 
 const router = new Router();
 
-router.get('/', ShopController.index);
+router.get('/', loginRequired, ShopController.index);
 router.post('/', ShopController.create);
 
-router.get('/:id', ShopController.show);
+//router.get('/:id',loginRequired, ShopController.show);
 
 export default router;

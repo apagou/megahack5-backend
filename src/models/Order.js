@@ -5,20 +5,20 @@ export default class Order extends Model {
     static init(sequelize) {
         super.init(
             {
-                requested_shop: {
+                shop_id: {
                     type: Sequelize.STRING,
                     defaultValue: '',
                 },
-                order_status:{
+                status:{
                     type: Sequelize.STRING,
                     defaultValue: '',
                 },
-                amount:{
+                user_id: {
                     type: Sequelize.INTEGER,
-                    defaultValue: 0,
+                    defaultValue: '',
                 },
-                buyer: {
-                    type: Sequelize.INTEGER,
+                freight: {
+                    type: Sequelize.DECIMAL(18,2),
                     defaultValue: '',
                 },
             },
@@ -31,6 +31,7 @@ export default class Order extends Model {
 
     static associate(models){
         this.hasMany(models.OrderedProducts, {foreignKey: 'order_id'})
+        this.belongsTo(models.Shop, {foreignKey: 'shop_id'})
     }
 
 

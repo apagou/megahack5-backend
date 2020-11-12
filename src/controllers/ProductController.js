@@ -4,7 +4,7 @@ import Product from '../models/Product';
 import appConfig from '../config/appConfig';
 import multerConfig from '../config/multer';
 
-const upload = multer(multerConfig).single('product_photo');
+const upload = multer(multerConfig).single('img_url');
 
 class ProductController {
   store(req, res) {
@@ -17,14 +17,14 @@ class ProductController {
 
       try {
         const { filename } = req.file;
-        const url = `${appConfig.url}/images/${filename}`;
+        const img_url = `${appConfig.url}/images/${filename}`;
 
         const {
-          productName, Price, Rating, P, M, G, GG, shop_id,
+          name, price, stars, size, shop_id,
         } = req.body;
 
         const product = await Product.create({
-          productName, Price, Rating, P, M, G, GG, url, shop_id,
+          name, img_url, price, stars, size, shop_id,
         });
 
         return res.json(product);
@@ -38,7 +38,6 @@ class ProductController {
   }
 
   async index(req, res) {
-    const { id } = req.params;
     const { shop_id } = req.query;
     try {
       const product = await Product.findAll({ where: { shop_id } });
