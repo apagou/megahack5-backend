@@ -46,26 +46,74 @@ class OrderController {
         }
       });
 
-      //const address = await UserAddress.findOne({ where: { user_id: userId } });
+      const renderOrder = order => {
+        const orderView = {
+          id: order.id,
+          date: order.created_at,
+          shop_name: order.Shop.name,
+          shop_img_url: order.Shop.img_url,
+          status: order.status
+        }
+        return orderView
+      }
 
- //     const lastOrder = order[order.length - 1];
+      const orders = order.map((currentOrder) => renderOrder(currentOrder))
 
-  //    const products = [];
-
-   //   lastOrder.OrderedProducts.map((product) => products.push(product.dataValues.product_id));
-
-   //   const productAttributes = await Product.findAll({ where: { id: products }, attributes: ['productName', 'url'] });
-
-     // console.log(productWithoutStrings);
-
-      return res.json({
-        order
-      });
+      return res.json(
+        orders
+      );
     } catch (error) {
       console.log(error);
       return res.json(null);
     }
   }
+
+  async findOne(req,res){
+    const { userId } = req 
+    const { id } = req.params
+
+    const order = await Order.findByPk(id, {
+      include: [
+        {
+          model: Shop,
+          attributes: ['name'],
+        },
+        {
+          model: OrderedProducts,
+          attributes: ['product_id', 'price'],
+          include: {
+            model: Product,
+            attributes: ['id','name', 'img_url', 'size','stars'],
+          },
+        }
+      ]
+     })
+
+    const renderOrder = order => {
+      const orderView = {
+        id: order.id,
+        shop_name: order.Shop.name,
+        status: order.status,
+        freight: order.freight,
+        date: order.created_at,
+        products: order.OrderedProducts.map(orderedProduct => {
+          return {
+            id: orderedProduct.product_id,
+            price: orderedProduct.price,
+            name: orderedProduct.Product.name,
+            img_url: orderedProduct.Product.img_url,
+            size: orderedProduct.Product.size,
+            stars: orderedProduct.Product.stars
+          }
+        })
+      };
+    
+      return orderView  
+    }
+
+   res.json(renderOrder(order))
+  }
+
 }
 
 export default new OrderController();

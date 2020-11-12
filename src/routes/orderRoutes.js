@@ -9,4 +9,6 @@ const router = new Router();
 router.post('/',loginRequired, OrderController.store);
 router.get('/',loginRequired, OrderController.index);
 
+router.get('/:id', loginRequired, OrderController.findOne)
+
 export default router;

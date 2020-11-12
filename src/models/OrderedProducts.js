@@ -34,7 +34,7 @@ export default class OrderedProducts extends Model {
 
     static associate(models) {
         this.hasOne(models.User, { foreignKey: 'id' });
-        this.hasOne(models.Product, { foreignKey: 'id' });
+        this.belongsTo(models.Product, { foreignKey: 'product_id' });
         this.hasOne(models.Order, { foreignKey: 'id' });
     }
 }

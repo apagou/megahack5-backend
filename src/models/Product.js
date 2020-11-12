@@ -36,4 +36,5 @@ export default class Product extends Model {
         );
         return this;
     }
+
 }
