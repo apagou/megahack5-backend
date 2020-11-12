@@ -42,9 +42,9 @@ class ShopController {
   async index(req, res) {
     try {
       const shops = await Shop.findAll()
-      return res.json({
-        shops,
-      });
+      return res.json(
+        shops
+      );
     } catch (error) {
       console.log(error)
       return res.json(null);
