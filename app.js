@@ -10,6 +10,7 @@ import shopRoutes from './src/routes/shopRoutes';
 import productRoutes from './src/routes/productRoutes';
 import orderRoutes from './src/routes/orderRoutes';
 import addressRoutes from './src/routes/addressRoutes';
+import creditCardRoutes from './src/routes/creditCardRoutes'
 
 class App {
   constructor() {
@@ -38,6 +39,7 @@ class App {
     this.app.use('/products/', productRoutes);
     this.app.use('/order/', orderRoutes);
     this.app.use('/address/', addressRoutes);
+    this.app.use("/creditCard/", creditCardRoutes)
   }
 }
 

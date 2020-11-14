@@ -7,8 +7,9 @@ import Product from '../models/Product';
 import Order from '../models/Order';
 import OrderedProducts from '../models/OrderedProducts';
 import UserAddress from '../models/UserAddress';
+import CreditCard from '../models/CreditCard'
 
-const models = [User, Shop, Product, Order, OrderedProducts, UserAddress];
+const models = [User, Shop, Product, Order, OrderedProducts, UserAddress, CreditCard];
 
 const connection = new Sequelize(databaseConfig);
 
