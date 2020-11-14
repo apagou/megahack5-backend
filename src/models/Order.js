@@ -24,10 +24,10 @@ export default class Order extends Model {
           type: Sequelize.STRING,
           defaultValue: '',
         },
-        cred_id:{
-          type: sequelize.INTEGER,
+        cred_id: {
+          type: Sequelize.INTEGER,
           default: '',
-        }
+        },
       },
       {
         sequelize,
@@ -38,8 +38,7 @@ export default class Order extends Model {
 
   static associate(models) {
     this.hasMany(models.OrderedProducts, { foreignKey: 'order_id' });
-    this.hasOne(models.UserAddress, { foreignKey: 'address' });
     this.belongsTo(models.Shop, { foreignKey: 'shop_id' });
-    this.belongsTo(models.CreditCard, {foreignKey: 'cred_id'})
+    this.belongsTo(models.CreditCard, { foreignKey: 'cred_id' });
   }
 }
