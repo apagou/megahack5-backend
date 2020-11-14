@@ -2,6 +2,7 @@ import { resolve } from 'path';
 
 import './src/database';
 import express from 'express';
+import cors from 'cors'
 
 import userRoutes from './src/routes/userRoutes';
 import tokenRoutes from './src/routes/tokenRoutes';
@@ -25,6 +26,7 @@ class App {
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());
     this.app.use(express.static(resolve(__dirname, 'uploads')));
+    this.app.use(cors())
   }
 
   // Routes that will help you handle HTTP requests.
