@@ -10,9 +10,17 @@ module.exports = {
       address: {
         type: Sequelize.STRING,
         allowNull: false,
+        references: {
+          model: 'orders',
+          key: 'address',
+        },
       },
-      number: {
-        type: Sequelize.STRING,
+      latitude: {
+        type: Sequelize.DECIMAL(18, 8),
+        allowNull: false,
+      },
+      longitude: {
+        type: Sequelize.DECIMAL(18, 8),
         allowNull: false,
       },
       user_id: {
