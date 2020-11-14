@@ -11,13 +11,13 @@ class OrderController {
 
     // Product list must be like -> [{"product_id": 1, "amount": 1, "price": 1}, {...}]
     const {
-      shop_id, status, freight, productList, address,
+      shop_id, status, freight, productList, address, cred_id,
     } = req.body;
 
     console.log(productList);
 
     const lastOrder = await Order.create({
-      shop_id, status, freight, user_id: userId, address,
+      shop_id, status, freight, user_id: userId, address, cred_id,
     });
 
     const ordered_products = [];
@@ -91,10 +91,12 @@ class OrderController {
         },
         {
           model: CreditCard,
-          attributes:['owner_name'],
-        }
+          attributes: ['owner_name', 'last_digits'],
+        },
       ],
     });
+
+    console.log(order);
 
     const renderOrder = (order) => {
       const orderView = {
@@ -111,6 +113,7 @@ class OrderController {
           size: orderedProduct.Product.size,
           stars: orderedProduct.Product.stars,
         })),
+        credit_card: order.CreditCard,
       };
 
       return orderView;
