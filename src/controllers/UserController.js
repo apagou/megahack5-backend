@@ -78,8 +78,13 @@ class UserController {
   }
 
   async createAddress(req, res) {
+    const { address, latitude, longitude } = req.body;
+    const { userId } = req;
+
     try {
-      const userAddress = await UserAddress.create(req.body);
+      const userAddress = await UserAddress.create({
+        address, latitude, longitude, user_id: userId,
+      });
 
       if (!userAddress) {
         return res.status(400).json({
@@ -95,10 +100,10 @@ class UserController {
   }
 
   async getAddress(req, res) {
-    const { id } = req.params;
+    const { userId } = req;
 
     try {
-      const userAddress = await UserAddress.findOne({ where: { user_id: id } });
+      const userAddress = await UserAddress.findAll({ where: { user_id: userId } });
 
       res.json(userAddress);
     } catch (e) {
