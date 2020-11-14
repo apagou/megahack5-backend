@@ -15,7 +15,7 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      CVV: {
+      CVV_hash: {
         type: Sequelize.INTEGER,
         allowNull: false,
       },

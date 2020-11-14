@@ -35,6 +35,14 @@ module.exports = {
           key: 'id',
         },
       },
+      cred_id:{
+        type:Sequelize.INTEGER,
+        allowNull: false,
+        references:{
+          model: 'creditCards',
+          key:'id',
+        },
+      },
       created_at: {
         type: Sequelize.DATE,
         allowNull: false,

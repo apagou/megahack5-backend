@@ -4,22 +4,18 @@ import User from '../models/Users';
 
 class CreditCardController {
     async addCreditCard(req, res) {
-        const { card_number, last_digits, CVV, validity_date, CPF } = req.body;
+        const { card_number, last_digits, CVV, validity_date, CPF, owner_name } = req.body;
         const { userId } = req;
-
-        let user = await User.findOne({ where: { id: userId }, attributes: ['name'] })
-
-        const owner_name = user.dataValues.name
 
         try {
             const userCardNumber = await CreditCard.create({
-                card_number, last_digits, CVV, validity_date, CPF, owner_name, user_id: userId
+                card_number, last_digits, CVV, validity_date, CPF, user_id: userId, owner_name
             });
 
 
             return res.json({ status: 'Created Successfully' });
         } catch (error) {
-            console.log('aaaaaaaaaaaaaaaaa', error);
+            console.log(error)
             return res.status(400).json({ errors: error.errors.map((err) => err.message) });
         }
     }
@@ -28,7 +24,7 @@ class CreditCardController {
         const { userId } = req;
 
         try {
-            const credit_info = await CreditCard.findAll({ where: { user_id: userId } });
+            const credit_info = await CreditCard.findAll({ where: { user_id: userId }, attributes:['id','last_digits','validity_date','owner_name','CPF'] });
 
             res.json(credit_info);
         } catch (e) {

@@ -1,3 +1,4 @@
+import CreditCard from '../models/CreditCard';
 import Order from '../models/Order';
 import OrderedProducts from '../models/OrderedProducts';
 import Product from '../models/Product';
@@ -88,6 +89,10 @@ class OrderController {
             attributes: ['id', 'name', 'img_url', 'size', 'stars'],
           },
         },
+        {
+          model: CreditCard,
+          attributes:['owner_name'],
+        }
       ],
     });
 

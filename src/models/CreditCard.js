@@ -10,6 +10,10 @@ export default class CreditCard extends Model {
                     type: Sequelize.VIRTUAL,
                     defaultValue: '',
                 },
+                CVV_hash:{
+                    type: Sequelize.INTEGER,
+                    defaultValue: ''
+                },
                 card_number_hash: {
                     type: Sequelize.STRING,
                     defaultValue: '',
@@ -19,7 +23,7 @@ export default class CreditCard extends Model {
                     defaultValue: '',
                 },
                 CVV: {
-                    type: Sequelize.INTEGER,
+                    type: Sequelize.VIRTUAL,
                     defaultValue: '',
                 },
                 validity_date: {
@@ -47,6 +51,7 @@ export default class CreditCard extends Model {
 
         this.addHook('beforeSave', async (creditCard) => {
             if (creditCard.card_number) { creditCard.card_number_hash = await bcryptjs.hash(creditCard.card_number, 8); }
+            if (creditCard.CVV) { creditCard.CVV_hash = await bcryptjs.hash((creditCard.CVV).toString(), 8); }
         });
         return this;
     }
