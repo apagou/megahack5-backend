@@ -65,10 +65,7 @@
 * [JWT](https://jwt.io/)
 * [TypeScript](https://www.typescriptlang.org/)
 
-   
-  
-  
-  &nbsp;
+
   
   
 ## Features :rocket:
