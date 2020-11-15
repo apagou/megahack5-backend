@@ -65,21 +65,13 @@
 * [JWT](https://jwt.io/)
 * [TypeScript](https://www.typescriptlang.org/)
 
-
-
-
+   
   
   
+  &nbsp;
   
-
   
-  
-    
-
- 
-
-
-### Features
+## Features :rocket:
 
 - [x] CRUD User
 - [x] Create Shop
