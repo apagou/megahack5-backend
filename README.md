@@ -24,7 +24,7 @@
 
 
 ## Projeto :computer: 
-<p><strong>Prove em casa</strong> é um aplicativo no qual o usuário poderá provar roupas sem sair de casa e o driver fará a entrega e você só ficará com as roupas que quiser, podendo assim solicitar que um driver venha buscar as não selecionadas.</p>
+<p><strong>Prove em casa</strong> é um aplicativo no qual o usuário poderá provar roupas sem sair de casa. O driver fará a entrega e você só ficará com as roupas que quiser, podendo assim solicitar a busca.</p>
 
 <p>O <strong>Prove em casa</strong> foi desenvolvido para solucionar o desafio proposto pela <a href="https://www.lojasrenner.com.br/">Renner</a> no MegaHack 5.0 organizado pela <a href="https://shawee.io/pt/">Shawee</a>. 
 
