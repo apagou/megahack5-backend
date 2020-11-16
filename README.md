@@ -48,7 +48,20 @@
   <img src="https://github.com/prove-em-casa/megahack5-mobile/blob/main/Login.png" align="left" width="166" height="318">
   <img src="https://github.com/prove-em-casa/megahack5-mobile/blob/main/Tela%20de%20escolha.png" align="left" width="166" height="318">
   <img src="https://github.com/prove-em-casa/megahack5-mobile/blob/main/detalhe.png" align="center" width="166" height="318">
+  
+  
+&nbsp;
 
+### 🎲 Rodando o Back End
+
+```bash
+# Instale as dependências
+$ npm install
+
+# Execute a aplicação em modo de desenvolvimento
+$ npm run dev
+
+```
    
   
   
@@ -77,5 +90,7 @@
 - [x] List one shop with their respectives products
 - [x] Create Token
 - [x] Create Order
-- [x] List users last order (Products, Address, User)
+- [x] Get Order - (one order has a user, an address, products... etc)
+- [x] List users last Order (Products, Address, User)
+- [x] Relationships between users and their respectives credit cards & address
 - [x] Authenticated Routes (Token)
